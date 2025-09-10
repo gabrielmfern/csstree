@@ -23,72 +23,70 @@
   "main": "./cjs/index.cjs",
   "exports": {
     ".": {
-      "import": "./lib/index.js",
-      "require": "./cjs/index.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./dist/*": "./dist/*.js",
+    "./dist/csstree.esm.js": "./dist/index.js",
+    "./dist/csstree.js": "./dist/index.cjs",
     "./package.json": "./package.json",
     "./tokenizer": {
-      "import": "./lib/tokenizer/index.js",
-      "require": "./cjs/tokenizer/index.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./parser": {
-      "import": "./lib/parser/index.js",
-      "require": "./cjs/parser/index.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./selector-parser": {
-      "import": "./lib/parser/parse-selector.js",
-      "require": "./cjs/parser/parse-selector.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./generator": {
-      "import": "./lib/generator/index.js",
-      "require": "./cjs/generator/index.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./walker": {
-      "import": "./lib/walker/index.js",
-      "require": "./cjs/walker/index.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./convertor": {
-      "import": "./lib/convertor/index.js",
-      "require": "./cjs/convertor/index.cjs"
+      "import": "./distindex.js",
+      "require": "./distindex.cjs"
     },
     "./lexer": {
-      "import": "./lib/lexer/index.js",
-      "require": "./cjs/lexer/index.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./definition-syntax": {
-      "import": "./lib/definition-syntax/index.js",
-      "require": "./cjs/definition-syntax/index.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./definition-syntax-data": {
-      "import": "./lib/data.js",
-      "require": "./cjs/data.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./definition-syntax-data-patch": {
-      "import": "./lib/data-patch.js",
-      "require": "./cjs/data-patch.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./utils": {
-      "import": "./lib/utils/index.js",
-      "require": "./cjs/utils/index.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "browser": {
-    "./cjs/data.cjs": "./dist/data.cjs",
-    "./cjs/version.cjs": "./dist/version.cjs",
-    "./lib/data.js": "./dist/data.js",
-    "./lib/version.js": "./dist/version.js"
+    "./cjs/data.cjs": "./dist/index.cjs",
+    "./cjs/version.cjs": "./dist/index.cjs",
+    "./lib/data.js": "./dist/index.js",
+    "./lib/version.js": "./dist/index.js"
   },
   "unpkg": "dist/csstree.esm.js",
   "jsdelivr": "dist/csstree.esm.js",
   "scripts": {
     "watch": "npm run build -- --watch",
-    "build": "npm run bundle && npm run esm-to-cjs --",
+    "build": "tsup-node --config ./tsup.config.js",
     "build-and-test": "npm run build && npm run test:dist && npm run test:cjs",
-    "bundle": "node scripts/bundle",
-    "bundle-and-test": "npm run bundle && npm run test:dist",
-    "esm-to-cjs": "node scripts/esm-to-cjs.cjs",
-    "esm-to-cjs-and-test": "npm run esm-to-cjs && npm run test:cjs",
     "lint": "eslint lib scripts && node scripts/review-syntax-patch --lint && node scripts/update-docs --lint",
     "lint-and-test": "npm run lint && npm test",
     "update:docs": "node scripts/update-docs",
@@ -100,7 +98,6 @@
     "prepublishOnly": "npm run lint-and-test && npm run build-and-test"
   },
   "dependencies": {
-    "mdn-data": "2.20.0",
     "source-map-js": "^1.0.1"
   },
   "devDependencies": {
@@ -109,8 +106,11 @@
     "esbuild": "^0.24.0",
     "eslint": "^8.4.1",
     "json-to-ast": "^2.1.0",
+    "mdn-data": "2.20.0",
     "mocha": "^9.2.2",
-    "rollup": "^2.79.2"
+    "rollup": "^2.79.2",
+    "tsup": "8.5.0",
+    "typescript": "5.9.2"
   },
   "engines": {
     "node": "^10 || ^12.20.0 || ^14.13.0 || >=15.0.0"
