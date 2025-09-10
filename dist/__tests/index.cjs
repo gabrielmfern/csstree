@@ -1,9 +1,8 @@
 /* global csstree */
 const assert = require('assert');
-const fs = require('fs');
+const csstree = require('../index.cjs');
 
-it('csstree.js', () => {
-    eval(fs.readFileSync('dist/csstree.js', 'utf8'));
+it('index.cjs', () => {
     const ast = csstree.parse('.test { color: red }');
     const actual = csstree.generate(ast);
 
