@@ -51,8 +51,8 @@
       "require": "./dist/index.cjs"
     },
     "./convertor": {
-      "import": "./distindex.js",
-      "require": "./distindex.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./lexer": {
       "import": "./dist/index.js",
